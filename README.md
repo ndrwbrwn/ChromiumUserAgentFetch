@@ -31,6 +31,3 @@ Historically, when setting the User-Agent via a fetch() request, Chromium would 
 Alternatively, when setting the User-Agent via a XMLHttpRequest(), Chromium would emit an error when calling `setRequestHeader()`: `Refused to set unsafe header "User-Agent"`.
 
 With this feature enabled, Chromium will correctly send the desired header value for either request method.
-
-## CORS
-
