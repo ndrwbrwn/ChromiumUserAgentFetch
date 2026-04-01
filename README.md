@@ -14,3 +14,23 @@ In Chrome `<edit version here>`, a prototype feature is available to let the fet
 3. Open the Chrome Devtools Console
 4. Make a fetch() request with a custom user-agent
 
+An example of making a fetch() request with a custom user-agent is:
+```js
+fetch('https://github.com/', {headers: {'User-Agent': 'My Value Here'}});
+```
+
+Alternatively, an example of making a XMLHttpRequest() with a custom user-agent is:
+```js
+const req = new XMLHttpRequest();
+req.open('GET', 'https://github.com/');
+req.setRequestHeader('User-Agent', 'My Value Here');
+req.send();
+```
+
+Historically, when setting the User-Agent via a fetch() request, Chromium would silently replace it with the browser's intrinsic value.
+Alternatively, when setting the User-Agent via a XMLHttpRequest(), Chromium would emit an error when calling `setRequestHeader()`: `Refused to set unsafe header "User-Agent"`.
+
+With this feature enabled, Chromium will correctly send the desired header value for either request method.
+
+## CORS
+
