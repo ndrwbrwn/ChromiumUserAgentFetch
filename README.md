@@ -1,12 +1,11 @@
 ---
-title: "How to experiment with fetch() user-agents in Chrome"
+title: "How to experiment with fetch user-agents in Chrome"
 maintainer: "ndrwbrwn"
 created: 01/04/2026
 updated: 01/04/2026
 ---
 
-
-# How to experiment with fetch() user-agents in Chrome
+# How to experiment with fetch user-agents in Chrome
 In Chrome `<edit version here>`, a prototype feature is available to let the fetch or XMLHttpRequest APIs set or modify the User-Agent that is sent with their requests.
 
 1. Download or update Chrome to `<edit version here>`
@@ -27,7 +26,7 @@ req.setRequestHeader('User-Agent', 'My Value Here');
 req.send();
 ```
 
-Historically, when setting the User-Agent via a fetch() request, Chromium would silently replace it with the browser's intrinsic value.
-Alternatively, when setting the User-Agent via a XMLHttpRequest(), Chromium would emit an error when calling `setRequestHeader()`: `Refused to set unsafe header "User-Agent"`.
+Historically, when setting the User-Agent via a fetch request, Chromium would silently replace it with the browser's intrinsic value.
+Alternatively, when setting the User-Agent via a XMLHttpRequest, Chromium would emit an error when calling `setRequestHeader`: `Refused to set unsafe header "User-Agent"`.
 
-With this feature enabled, Chromium will correctly send the desired header value for either request method.
+With this feature enabled, Chromium will correctly send the desired header value for either request method. Sent header values can be introspected via DevTools (an API-set-value should appear in the [Network.requestWillBeSent](https://chromedevtools.github.io/devtools-protocol/tot/Network/#event-requestWillBeSent) event, and the final value should appear in the [Network.requestWillBeSentExtraInfo](https://chromedevtools.github.io/devtools-protocol/tot/Network/#event-requestWillBeSentExtraInfo) event).
